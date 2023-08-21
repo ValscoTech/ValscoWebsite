@@ -13,9 +13,17 @@ import { Pagination } from "swiper";
 import Iphone from './images/juri.png';
 import Client from './images/client.png';
 import Login from './images/login.png'
+import { Helmet } from "react-helmet-async";
 
 function ProductsPage() {
   return (
+    <>
+    <Helmet>
+        <title>Valsco</title>
+        <meta name="description" content="lorem" /> // Add the description instead of lorem
+        <link rel="canonical" href="/products" />
+      </Helmet>
+    
     <div id="productspage">
       <div className="lap"> <div className="lap1">
         <div className="fulls">
@@ -31,6 +39,7 @@ function ProductsPage() {
         </div >
       </div></div>
     </div>
+    </>
   );
 }
 

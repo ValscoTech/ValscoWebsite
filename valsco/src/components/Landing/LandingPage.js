@@ -6,6 +6,11 @@ import { Link } from "react-router-dom"
 function LandingPage() {
   return (
     <>
+    <Helmet>
+        <title>Valsco</title>
+        <meta name="description" content="lorem" /> // Add the description instead of lorem
+        <link rel="canonical" href="/" />
+      </Helmet>
       <div className="wrapper">
         <div className="main">
           <div className="front">
