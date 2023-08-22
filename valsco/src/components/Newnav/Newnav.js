@@ -6,8 +6,10 @@ import {BrowserRouter,NavLink} from "react-router-dom";
 function App() {
   const [visible, setVisible] = useState(false)
   return (
+    <Helmet>
+        <title>Valsco Technology - Navigation</title>
+      </Helmet>
     
-
 <header>
   <a href="#main-menu"
      id="main-menu-toggle"
