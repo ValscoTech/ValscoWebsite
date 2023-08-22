@@ -1,7 +1,7 @@
 import React , { createContext , useContext, useEffect, useReducer ,useState} from "react";
 import { collection , getDocs ,deleteDoc, doc ,getDoc} from "firebase/firestore";
 import {auth ,  db} from "../firebase-config";
-import reducer from "../reducer/blogReducer"
+import reducer from "../reducer/blogReducer";
 
 const AppContext = createContext();
 const initialState={

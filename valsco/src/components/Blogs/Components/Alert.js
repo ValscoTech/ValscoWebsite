@@ -1,4 +1,6 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
+
 
 const Alert = (props) => {
 
@@ -9,6 +11,9 @@ const Alert = (props) => {
 
   return (
     <>
+    <Helmet>
+        <title>{props.alertMsg ? props.alertMsg : "Alert"}</title>
+      </Helmet>
       <div className="alert-main-div">
         {props.alertMsg && props.alertMsg != "" && (
           <div className="alert-div" style={{backgroundColor:`${props.alertColor}`}}>{props.alertMsg}</div>

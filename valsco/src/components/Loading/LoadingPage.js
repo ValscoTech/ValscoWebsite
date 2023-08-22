@@ -52,8 +52,11 @@ export const LoadingPage = () => {
     <>
     <Helmet>
         <title>Valsco</title>
-        <meta name="description" content="lorem" /> // Add the description instead of lorem
-        <link rel="canonical" href="/" />
+        <title>Welcome to Valsco - Empowering Solutions</title>
+        <meta
+          name="description"
+          content="Welcome to Valsco! We provide innovative software products and services to businesses and individuals, tailored to meet their unique needs. Explore our solutions today."
+        />
       </Helmet>
     <div>
       {!isLoadingComplete ? (

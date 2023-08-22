@@ -2,6 +2,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import gif from './valscogif.gif';
 import './hover.css';
 import {Link}from 'react-scroll';
+import { Helmet } from "react-helmet-async";
+
+
 
 const HoverImage = () => {
   const containerRef = useRef(null);
@@ -37,6 +40,17 @@ const HoverImage = () => {
   };
 
   return (
+    <>
+    <Helmet>
+        <title>Interactive Hover Image - Valsco Technology</title>
+        <meta
+          name="description"
+          content="Experience an interactive hover effect with the Valsco Technology logo. Explore our innovative solutions by interacting with this engaging element."
+        />
+        <link rel="canonical" href="/hover-image" />
+      </Helmet>
+    
+  
     <Link to="aboutuspage">
     <div  style={{display:'flex',justifyContent:'center',margin:'100px'}}>
     <div className='softimage'
@@ -50,6 +64,8 @@ const HoverImage = () => {
     </div>
     </div>
     </Link>
+
+    </>
   );
 };
 
