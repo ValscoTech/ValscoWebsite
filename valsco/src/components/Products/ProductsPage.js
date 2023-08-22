@@ -19,8 +19,8 @@ function ProductsPage() {
   return (
     <>
     <Helmet>
-        <title>Valsco</title>
-        <meta name="description" content="lorem" /> // Add the description instead of lorem
+        <title>Products - Valsco</title>
+        <meta name="description" content="Discover our range of innovative products designed to enhance your experience. For all your software solutions, explore the future with Valsco." /> // Add the description instead of lorem
         <link rel="canonical" href="/products" />
       </Helmet>
     
