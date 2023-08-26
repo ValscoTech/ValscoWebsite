@@ -6,6 +6,14 @@ import { Link } from "react-router-dom"
 function LandingPage() {
   return (
     <>
+    <Helmet>
+        <title>Valsco</title>
+        <title>Welcome to Valsco - Empowering Solutions</title>
+        <meta
+          name="description"
+          content="Welcome to Valsco! We provide innovative software products and services to businesses and individuals, tailored to meet their unique needs. Explore our solutions today."
+        />
+      </Helmet>
       <div className="wrapper">
         <div className="main">
           <div className="front">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./LoadingPage.css"
 import LandingPage from "../Landing/LandingPage"
+import { Helmet } from "react-helmet-async"
 
 
 export const LoadingPage = () => {
@@ -49,6 +50,14 @@ export const LoadingPage = () => {
 
   return (
     <>
+<Helmet>
+        <title>Loading - Valsco</title>
+        <meta
+          name="description"
+          content="Experience the loading animation of VALSCO before exploring our innovative software solutions. Stay tuned for exciting content!"
+        />
+        <link rel="canonical" href="/loading" />
+      </Helmet>
     <div>
       {!isLoadingComplete ? (
         <div className="plan">
