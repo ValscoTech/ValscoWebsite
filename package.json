@@ -2,9 +2,13 @@
   "dependencies": {
     "bootstrap": "^5.3.1",
     "firestore": "^1.1.6",
+<<<<<<< HEAD
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactstrap": "^9.2.0",
+=======
+    "react-scripts": "^5.0.1",
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
     "swiper": "^9.3.2"
   }
 }

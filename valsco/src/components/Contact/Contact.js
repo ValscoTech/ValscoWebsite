@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import "./Contact.css";
 import { useForm, Controller, set } from "react-hook-form";
@@ -60,13 +61,84 @@ function Contact() {
       })
 
       console.log(response2)
+=======
+import './Contact.css';
+import React, { useState } from 'react';
+
+function Contact() {
+
+  const [newContact, setNewContact] = useState({ name: '', email: '', number: '', company: '' })
+
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true
+    }
+    return false
+  }
+
+  function phonenumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  const handleOnChange = (e) => {
+    setNewContact({ ...newContact, [e.target.name]: e.target.value })
+  }
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    // MongoDB Version
+    // const url = "http://localhost:5000"; 
+
+    // Firebase Version
+    const url = "https://website-bad9f-default-rtdb.asia-southeast1.firebasedatabase.app/contactUsRecords.json"
+
+    try {
+      if (ValidateEmail(newContact.email) && phonenumber(newContact.number) && newContact.name.length >= 3 && newContact.company.length >= 3) {
+        const response = await fetch(url, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify({ name: newContact.name, email: newContact.email, number: newContact.number, company: newContact.company })
+        })
+
+        let savedEmail = newContact.email;
+        setNewContact({ name: '', email: '', number: '', company: '' });
+        const url2 = "http://localhost:5000";
+        const response2 = await fetch(url2, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify({ email: savedEmail })
+        })
+
+      }
+      else {
+        alert("Please fill the form Correctly!");
+        setNewContact({ name: '', email: '', number: '', company: '' });
+      }
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
 
     } catch (error) {
       alert(`The Following Error Occured: ${error}.\nKindly Try Again!`)
       setNewContact({ name: '', email: '', number: '', company: '' });
     }
+<<<<<<< HEAD
 
   };
+=======
+  }
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
 
   return (
     <div id="aboutuspage" className="complete">
@@ -152,8 +224,13 @@ function Contact() {
           <br />
           <p>Experience the Valsco Difference, Request a Consultation Today!</p>
         </div>
+<<<<<<< HEAD
         <div className="b-form" id="contactusrow2">
           <form method="POST" action={backendURL}>
+=======
+        <div className="b-form">
+          <form method='POST' action='http://localhost:5000/'>
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
             <div className="form-row">
               <label htmlFor="name">Name</label>
               <input
@@ -163,9 +240,15 @@ function Contact() {
                 onChange={handleOnChange}
                 value={newContact.name}
                 placeholder="Your Name"
+<<<<<<< HEAD
                 name="name"
                 required
                 pattern="^[A-Za-z\s.]{3,50}$"
+=======
+                onChange={handleOnChange}
+                name='name'
+                value={newContact.name}
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
               />
               <span className="inputSpan">Name should be 3-50 Characters Long</span>
             </div>
@@ -178,12 +261,19 @@ function Contact() {
                 onChange={handleOnChange}
                 value={newContact.email}
                 placeholder="Your Email"
+<<<<<<< HEAD
                 name="email"
                 required
+=======
+                onChange={handleOnChange}
+                name='email'
+                value={newContact.email}
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
               />
               <span className="inputSpan">Please enter a Valid Email!</span>
             </div>
             <div className="form-row">
+<<<<<<< HEAD
               <div>
                 <label htmlFor="number">Phone Number</label>
                 <input
@@ -199,6 +289,18 @@ function Contact() {
                 />
                 <span className="inputSpan">Please Enter a Valid Phone Number</span>
               </div>
+=======
+              <label htmlFor="inputAddress2">Number</label>
+              <input
+                type="tel"
+                className="form-control"
+                id="inputAddress2"
+                placeholder="Your Contact number"
+                onChange={handleOnChange}
+                name='number'
+                value={newContact.number}
+              />
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
             </div>
             <div className="form-row">
               <label htmlFor="company">Company</label>
@@ -209,12 +311,19 @@ function Contact() {
                 onChange={handleOnChange}
                 value={newContact.company}
                 placeholder="Your Company/Organisation"
+<<<<<<< HEAD
                 name="company"
                 required
                 pattern="^[A-Za-z\s0-9.\+\$\*\\]{3,100}$"
+=======
+                onChange={handleOnChange}
+                name='company'
+                value={newContact.company}
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
               />
               <span className="inputSpan">Company Name Should be 3-50 Characters Long</span>
             </div>
+<<<<<<< HEAD
             <button
               type="submit"
               className="btn btn-primary transparent-button"
@@ -222,6 +331,9 @@ function Contact() {
               onClick={handleFormSubmit}
               disabled={isValid}
             >
+=======
+            <button type="submit" className="btn btn-primary transparent-button" onClick={handleOnSubmit}>
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
               Click to send your message
             </button>
             {isSuccess && <div id="successfulMessage">Your Message Sent Successfully!</div>}
@@ -254,6 +366,10 @@ function Contact() {
         </div>
       </div>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 20bf86a24038983cef29c12df3557aab933da954
   );
 }
 
