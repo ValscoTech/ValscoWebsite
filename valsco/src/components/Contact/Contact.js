@@ -1,7 +1,75 @@
 import './Contact.css';
-import React from 'react';
+import React, { useState } from 'react';
 
 function Contact() {
+
+  const [newContact, setNewContact] = useState({ name: '', email: '', number: '', company: '' })
+
+  function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true
+    }
+    return false
+  }
+
+  function phonenumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  const handleOnChange = (e) => {
+    setNewContact({ ...newContact, [e.target.name]: e.target.value })
+  }
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    // MongoDB Version
+    // const url = "http://localhost:5000"; 
+
+    // Firebase Version
+    const url = "https://website-bad9f-default-rtdb.asia-southeast1.firebasedatabase.app/contactUsRecords.json"
+
+    try {
+      if (ValidateEmail(newContact.email) && phonenumber(newContact.number) && newContact.name.length >= 3 && newContact.company.length >= 3) {
+        const response = await fetch(url, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify({ name: newContact.name, email: newContact.email, number: newContact.number, company: newContact.company })
+        })
+
+        let savedEmail = newContact.email;
+        setNewContact({ name: '', email: '', number: '', company: '' });
+        const url2 = "http://localhost:5000";
+        const response2 = await fetch(url2, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            'Content-Type': "application/json"
+          },
+          body: JSON.stringify({ email: savedEmail })
+        })
+
+      }
+      else {
+        alert("Please fill the form Correctly!");
+        setNewContact({ name: '', email: '', number: '', company: '' });
+      }
+
+    } catch (error) {
+      alert(`The Following Error Occured: ${error}.\nKindly Try Again!`)
+      setNewContact({ name: '', email: '', number: '', company: '' });
+    }
+  }
+
   return (
     <div className="complete">
       <div className="App">
@@ -73,7 +141,7 @@ function Contact() {
           <p>Experience the Valsco Difference, Request a Consultation Today!</p>
         </div>
         <div className="b-form">
-          <form>
+          <form method='POST' action='http://localhost:5000/'>
             <div className="form-row">
               <label htmlFor="inputEmail4">Name</label>
               <input
@@ -81,6 +149,9 @@ function Contact() {
                 className="form-control"
                 id="inputEmail4"
                 placeholder="Your Name"
+                onChange={handleOnChange}
+                name='name'
+                value={newContact.name}
               />
             </div>
             <div className="form-row">
@@ -90,6 +161,9 @@ function Contact() {
                 className="form-control"
                 id="inputEmail4"
                 placeholder="Your Email"
+                onChange={handleOnChange}
+                name='email'
+                value={newContact.email}
               />
             </div>
             <div className="form-row">
@@ -99,6 +173,9 @@ function Contact() {
                 className="form-control"
                 id="inputAddress2"
                 placeholder="Your Contact number"
+                onChange={handleOnChange}
+                name='number'
+                value={newContact.number}
               />
             </div>
             <div className="form-row">
@@ -108,9 +185,12 @@ function Contact() {
                 className="form-control"
                 id="inputCity"
                 placeholder="Your Company/Organisation"
+                onChange={handleOnChange}
+                name='company'
+                value={newContact.company}
               />
             </div>
-            <button type="submit" className="btn btn-primary transparent-button" id = "buton">
+            <button type="submit" className="btn btn-primary transparent-button" onClick={handleOnSubmit}>
               Click to send your message
             </button>
           </form>
@@ -137,7 +217,7 @@ function Contact() {
           </div>
         </div>
       </div>
-</div>
+    </div>
 
   );
 }
