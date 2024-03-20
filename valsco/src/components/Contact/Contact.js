@@ -6,7 +6,7 @@ import "react-phone-number-input/style.css";
 import validator from "validator";
 import { Helmet } from "react-helmet-async";
 
-const backendURL = "https://valscobackendtest.onrender.com";
+const backendURL = "https://valscowebsite.onrender.com";
 // const backendURL = "http://localhost:5000"
 
 const PHONE_REGEX = new RegExp(
