@@ -1,0 +1,26 @@
+name: Deployment
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14
+
+            - name: Install depencencies
+              run: npm install
+              shell: bash
+
+            - name: Deploy
+              env:
+                  deploy_url: ${{ secrets. RENDER_DEPLOY_HOOK_URL }}
+              run: curl "$deploy_url"
+              shell: bash
